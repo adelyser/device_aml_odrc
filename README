@@ -1,7 +1,7 @@
-Read it first : https://github.com/peyo-hd/local_manifests
+Read it first : https://github.com/adelyser/local_manifests
 
 # Build Kernel
- Install gcc-4.7-arm-linux-gnueabihf. Then,
+ Install gcc-4.9-arm-linux-gnueabihf. Then,
   $ cd kernel/odrc
   $ ARCH=arm make odroidc_defconfig
   $ ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make uImage
@@ -10,6 +10,10 @@ Read it first : https://github.com/peyo-hd/local_manifests
 
 # Patch frameworks/base
   Do https://github.com/peyo-hd/device_aml_odrc/wiki#avoid-logcat-flood
+
+# Fix toolchain
+  $ rm prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.15-4.8/x86_64-linux/bin/ld
+  $ ln -s /usr/bin/ld.gold prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.15-4.8/x86_64-linux/bin/ld
 
 # Build Android source
  Continue build with http://source.android.com/source/building-running.html
@@ -43,4 +47,3 @@ Read it first : https://github.com/peyo-hd/local_manifests
   kernel/odrc/arch/arm/boot/uImage to p1:/
   kernel/odrc/arch/arm/boot/dts/meson8b_odroidc.dtb to p1:/
   out/target/product/odrc/uInitrd to p1:/
-
